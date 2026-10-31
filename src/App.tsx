@@ -3,12 +3,16 @@ import { useInscricoes } from './hooks/useInscricoes';
 import { CadastrarForm } from './assets/components/CadastrarForm';
 import { StatCard } from './assets/components/StatCard';
 import { InscricoesList } from './assets/components/InscricoesList';
+import { useState } from 'react';
+import { ImportarCsvModal } from './assets/components/ImportarCsvModal';
 
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const cenario = searchParams.get('cenario') || undefined;
 
   const { data: inscricoes, isPending, isError, error, refetch } = useInscricoes(cenario);
+
+  const [isCsvModalOpen, setIsCsvModalOpen] = useState(false);
 
   if (isPending) {
     return (
@@ -22,8 +26,8 @@ function App() {
     return (
       <div className="min-h-screen bg-body-bg flex flex-col items-center justify-center gap-4">
         <p className="text-red-500 font-bold">Erro ao carregar: {error.message}</p>
-        <button 
-          onClick={() => refetch()} 
+        <button
+          onClick={() => refetch()}
           className="px-4 py-2 bg-btn-primary-bg text-btn-primary-text rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
         >
           Tentar novamente
@@ -59,14 +63,25 @@ function App() {
 
           <div className="grid grid-cols-1 min-[1351px]:grid-cols-3 gap-6">
             <div className="min-[1351px]:col-span-2 min-w-0">
-              <InscricoesList inscricoes={inscricoes || []} total={total} />
+              <InscricoesList inscricoes={inscricoes || []} />
             </div>
-            <div className="min-[1351px]:col-span-1">
+            
+            <div className="min-[1351px]:col-span-1 flex flex-col gap-4">
               <CadastrarForm />
+              
+              <button
+                onClick={() => setIsCsvModalOpen(true)}
+                className="w-full px-4 py-2.5 border border-gray-300 bg-white rounded-lg text-sm font-medium text-title-text hover:bg-gray-50 transition-colors focus:ring-2 focus:ring-btn-primary-bg focus:outline-none"
+              >
+                Importar CSV
+              </button>
             </div>
           </div>
         </div>
       </main>
+      {isCsvModalOpen && (
+        <ImportarCsvModal onClose={() => setIsCsvModalOpen(false)} />
+      )}
     </>
   );
 }

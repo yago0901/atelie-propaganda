@@ -7,10 +7,9 @@ import type { Inscricao } from '../../schemas/inscricaoSchema';
 
 interface InscricoesListProps {
   inscricoes: Inscricao[];
-  total: number;
 }
 
-export function InscricoesList({ inscricoes, total }: InscricoesListProps) {
+export function InscricoesList({ inscricoes }: InscricoesListProps) {
   const [filtroAtivo, setFiltroAtivo] = useState('todos');
   const [busca, setBusca] = useState('');
   const [idSelecionado, setIdSelecionado] = useState<string | number | null>(null);
@@ -53,7 +52,7 @@ export function InscricoesList({ inscricoes, total }: InscricoesListProps) {
 
       <div className="rounded-lg min-[1351px]:border-none border border-gray-200 overflow-hidden">
         <div className="px-4 py-1 text-[12px] text-subtext-text border-b border-gray-100">
-          Mostrando {listaPaginada.length} de {total} inscrições
+          Mostrando {listaPaginada.length} de {listaFiltrada.length} inscrições
         </div>
 
         <div className="hidden min-[1351px]:block w-full overflow-x-auto">

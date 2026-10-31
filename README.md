@@ -42,6 +42,14 @@ Você pode forçar estados da API adicionando o parâmetro na URL:
 - http://localhost:5173/?cenario=lento (Simula uma resposta lenta da API, atrasando o carregamento).
 - http://localhost:5173/?cenario=conflito (Ao tentar cadastrar qualquer e-mail, a API simula um erro 409 de conflito, mantendo os dados no formulário e exibindo a mensagem de e-mail já cadastrado).
 
+# Painel de Inscrições - Conexão Ateliê
+
+> 🚀 **Aplicação em Produção:** [https://atelie-propaganda.vercel.app/](https://atelie-propaganda.vercel.app/)
+> 
+> 🧪 **Testar Cenários de Erro:** [https://atelie-propaganda.vercel.app/?cenario=erro](https://atelie-propaganda.vercel.app/?cenario=erro)
+> 
+> ⏳ **Testar Carregamento Lento:** [https://atelie-propaganda.vercel.app/?cenario=lento](https://atelie-propaganda.vercel
+
 ## ⏳ Tempo Dedicado
 Aproximadamente **4 horas** (distribuídas entre estruturação, design system, lógica de negócios, testes e refinamentos de acessibilidade).
 
